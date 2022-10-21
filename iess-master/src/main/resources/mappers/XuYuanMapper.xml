@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.crm.dao.XuYuanMapper">
+    <select id="selectNote" resultType="com.xxx.crm.entity.Note" parameterType="int">
+        select * from iess.t_xuyuan where noteId=#{noteId}
+    </select>
+
+    <select id="selectNotes" resultType="com.xxx.crm.entity.Note">
+        select * from iess.t_xuyuan n inner join
+        iess.t_note_type t on n.typeId = t.typeId where n.userId = #{userId}
+        <choose>
+            <when test="title!=null and title!=''">
+                and title like concat('%',#{title},'%')
+            </when>
+            <when test="date!=null and date!=''">
+                and date_format(pubTime,'%Y年%m月') = #{date}
+            </when>
+            <when test="typeId!=null and typeId!=''">
+                and n.typeId = #{typeId}
+            </when>
+        </choose>
+        order by pubTime desc limit #{index},#{pageSize}
+    </select>
+    <select id="selectNoteListNotByUserId" resultType="com.xxx.crm.entity.Note">
+        select * from iess.t_xuyuan n inner join
+        iess.t_note_type t on n.typeId = t.typeId
+        <where>
+            <choose>
+                <when test="title!=null and title!=''">
+                    and title like concat('%',#{title},'%')
+                </when>
+                <when test="date!=null and date!=''">
+                    and date_format(pubTime,'%Y年%m月') = #{date}
+                </when>
+                <when test="typeId!=null and typeId!=''">
+                    and n.typeId = #{typeId}
+                </when>
+            </choose>
+        </where>
+        order by pubTime desc limit #{index},#{pageSize}
+    </select>
+
+    <select id="findNoteCount" resultType="int">
+        select count(*) from iess.t_xuyuan n inner join
+        iess.t_note_type t on n.typeId = t.typeId where n.userId = #{userId}
+        <choose>
+            <when test="title!=null and title!=''">
+                and title like concat('%',#{title},'%')
+            </when>
+            <when test="date!=null and date!=''">
+                and date_format(pubTime,'%Y年%m月') = #{date}
+            </when>
+            <when test="typeId!=null and typeId!=''">
+                and n.typeId = #{typeId}
+            </when>
+        </choose>
+    </select>
+</mapper>

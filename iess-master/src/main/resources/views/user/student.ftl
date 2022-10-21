@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>用户管理</title>
+    <#include "../common.ftl">
+</head>
+<body class="childrenBody">
+<form class="layui-form" >
+    <#if permissions?seq_contains("607002")>   <#-- 授权码601002表示用户查询 -->
+        <blockquote class="layui-elem-quote quoteBox">
+            <form class="layui-form">
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <input type="text" name="userName" class="layui-input searchVal" placeholder="用户名" />
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" name="email" class="layui-input searchVal" placeholder="邮箱" />
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" name="phone" class="layui-input searchVal" placeholder="手机号" />
+                    </div>
+                    <a class="layui-btn search_btn" data-type="reload">
+                        <i class="layui-icon">&#xe615;</i>
+                        搜索
+                    </a>
+                </div>
+            </form>
+        </blockquote>
+    </#if>
+
+    <table id="userList" class="layui-table"  lay-filter="users"></table>
+
+    <#-- 表头工具栏 -->
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <#if permissions?seq_contains("607001")>   <#-- 授权码601001表示用户添加 -->
+                <a class="layui-btn layui-btn-normal addNews_btn" lay-event="add">
+                    <i class="layui-icon">&#xe608;</i>
+                    添加用户
+                </a>
+            </#if>
+
+            <#if permissions?seq_contains("607004")>   <#-- 授权码601004表示用户删除 -->
+                <a class="layui-btn layui-btn-normal delNews_btn" lay-event="del">
+                    <i class="layui-icon">&#xe608;</i>
+                    删除用户
+                </a>
+            </#if>
+        </div>
+    </script>
+
+    <!--行工具栏-->
+    <script id="userListBar" type="text/html">
+        <#if permissions?seq_contains("607003")>   <#-- 授权码601003表示用户修改 -->
+            <a class="layui-btn layui-btn-xs" id="edit" lay-event="edit">编辑</a>
+        </#if>
+
+        <#if permissions?seq_contains("607004")>   <#-- 授权码601004表示用户删除 -->
+            <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+        </#if>
+    </script>
+</form>
+
+<script type="text/javascript" src="${ctx}/js/user/student.js"></script>
+</body>
+</html>

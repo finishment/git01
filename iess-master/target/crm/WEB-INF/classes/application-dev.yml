@@ -1,0 +1,58 @@
+## 端口号 上下文路径
+server:
+  port: 8080
+  servlet:
+    context-path: /iess
+# 数据源配置
+spring:
+  datasource:
+#    type: com.mchange.v2.c3p0.ComboPooledDataSource #c3p0
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/iess?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 123456
+  ## freemarker
+  freemarker:
+    suffix: .ftl  #freemarker文件后缀
+    content-type: text/html
+    charset: UTF-8
+    template-loader-path: classpath:/views/ # 指定 freemarker页面所在路径
+  # 启用热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+  redis:
+    host: 39.105.34.45
+    port: 6379
+    database: 0
+    password: Qq758230646
+    timeout: 100000
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+mybatis:
+  mapper-locations: classpath:/mappers/*Mapper.xml
+  type-aliases-package: com.xxx.crm.vo
+  configuration:
+    map-underscore-to-camel-case: true  # 驼峰匹配
+
+# PageHelper 分页
+pagehelper:
+  helper-dialect: mysql
+
+# 设置 dao 日志打印级别
+logging:
+  level:
+    com:
+      xxx:
+        crm:
+          dao: debug
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: dao/*.xml

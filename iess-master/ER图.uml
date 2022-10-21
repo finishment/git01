@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_class</OriginalElement>
+  <nodes>
+    <node x="140.75699558173778" y="517.4992636229749">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_user</node>
+    <node x="1244.683582883325" y="187.3298969072165">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_view_chance</node>
+    <node x="537.3085419734904" y="100.68777614138435">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_comment</node>
+    <node x="1087.683582883325" y="187.32989690721647">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_company</node>
+    <node x="-35.24300441826219" y="517.4992636229749">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_class</node>
+    <node x="472.7569955817378" y="517.4992636229749">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_role</node>
+    <node x="795.3085419734904" y="100.68777614138435">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_collection</node>
+    <node x="1354.234454262805" y="609.9992636229749">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_log</node>
+    <node x="307.7569955817378" y="517.4992636229749">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_user_role</node>
+    <node x="275.3085419734904" y="100.68777614138435">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_note</node>
+    <node x="932.7569955817378" y="517.4992636229749">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_module</node>
+    <node x="-57.69145802650962" y="100.68777614138435">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_note_type</node>
+    <node x="705.7569955817378" y="517.4992636229749">8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_permission</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_note" target="8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_note_type" relationship="REFERENCES">
+      <point x="0.0" y="-132.0" />
+      <point x="406.3085419734904" y="52.80117820324007" />
+      <point x="108.80854197349038" y="52.80117820324007" />
+      <point x="0.0" y="51.5" />
+    </edge>
+  </edges>
+  <settings layout="分层" zoom="0.6605504587155964" showDependencies="false" x="804.0000000000001" y="440.0" />
+  <SelectedNodes>
+    <node>8a81acdb-ed88-4fc2-8c8e-055db68ce5b9.TABLE:iess.t_view_chance</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>列</Category>
+    <Category>注释</Category>
+    <Category>虚拟外键</Category>
+    <Category>键列</Category>
+  </Categories>
+</Diagram>
+

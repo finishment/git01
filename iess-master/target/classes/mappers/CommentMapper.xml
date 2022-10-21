@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xxx.crm.dao.CommentMapper">
+
+    <select id="selectCommentsByCommentId" resultType="com.xxx.crm.query.CommentQuery"
+            parameterType="java.lang.String">
+        SELECT t2.id,t2.comm_id, t1.user_name as parent_name, t2.note_id,t2.userId, t2.user_name, t2.content, t2.create_time, t2.is_valid
+        FROM t_user t1,(select t2.id,t2.comm_id,t2.parent_id,t1.user_id, t1.user_id as parent_name, t2.note_id,t3.id as userId, t3.user_name as user_name, t2.content, t2.create_time, t2.is_valid
+                        from iess.t_comment t1,iess.t_comment t2 ,t_user t3
+                        where t1.id=t2.parent_id and t2.user_id=t3.id  and t2.comm_id=#{commentId} and t2.parent_id is not null) t2
+        WHERE t1.id=t2.parent_name
+        </select>
+    <select id="selectCommentsByNoteId" resultType="com.xxx.crm.query.CommentQuery"
+            parameterType="java.lang.String">
+        select t2.id,t2.comm_id, t2.parent_id as parent_name, t2.note_id,t2.user_id, t3.user_name as user_name, t2.content, t2.create_time, t2.is_valid
+        from iess.t_comment t2 ,t_user t3
+        where  t2.user_id=t3.id  and t2.note_id=#{noteId} and t2.parent_id is null
+    </select>
+    <select id="commentList" resultType="com.xxx.crm.query.CommentQuery">
+        select  t1.title,t2.id,t2.comm_id, t2.parent_name , t2.note_id,t2.userId, t2.user_name, t2.content, t2.create_time, t2.is_valid
+            from   iess.t_note t1 ,(SELECT t2.id,t2.comm_id, t1.user_name as parent_name, t2.note_id,t2.userId, t2.user_name, t2.content, t2.create_time, t2.is_valid
+                                    FROM t_user t1,(select t2.id,t2.comm_id,t2.parent_id,t1.user_id, t1.user_id as parent_name, t2.note_id,t3.id as userId, t3.user_name as user_name, t2.content, t2.create_time, t2.is_valid
+                                                    from iess.t_comment t1,iess.t_comment t2 ,t_user t3
+                                                    where t1.id=t2.parent_id and t2.user_id=t3.id  and t1.user_id=#{userId} and t3.id!=#{userId}) t2
+                                    WHERE t1.id=t2.parent_name) t2
+        <where>
+         t1.noteId =t2.note_id
+            <if test="content != null and content != '' ">
+                AND t2.content LIKE CONCAT('%',#{content},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>
